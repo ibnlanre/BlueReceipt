@@ -14,7 +14,7 @@ const useCombinedRefs = <T>(...refs: (Ref<T> | null)[]) => {
       } else {
         // @ts-ignore
         // eslint-disable-next-line no-param-reassign
-        ref.current = targetRef.current;
+        ref.current = targetRef;
       }
     });
   }, [refs]);

@@ -30,6 +30,11 @@ interface Props {
   className?: string;
 
   /**
+   * For form control
+   */
+  htmlFor?: string;
+
+  /**
    * React ref passtrough to label
    */
   ref?: Ref<HTMLLabelElement>;
@@ -41,7 +46,7 @@ interface Props {
 }
 
 const Label: FC<Props> = forwardRef((props, ref) => {
-  const { children, title, position, disabled, tabIndex, onKeyPress, className } = props;
+  const { children, title, position, disabled, tabIndex, onKeyPress, className, htmlFor } = props;
 
   const text = (
     <div className={styles.label}>
@@ -55,7 +60,14 @@ const Label: FC<Props> = forwardRef((props, ref) => {
   );
 
   return (
-    <label className={classes} ref={ref} tabIndex={tabIndex} onKeyPress={onKeyPress} role='presentation'>
+    <label
+      className={classes}
+      ref={ref}
+      htmlFor={htmlFor}
+      tabIndex={tabIndex}
+      onKeyPress={onKeyPress}
+      role='presentation'
+    >
       {text}
       {children}
     </label>

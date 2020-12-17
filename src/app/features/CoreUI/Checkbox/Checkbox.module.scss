@@ -1,0 +1,86 @@
+@import '../variables.scss';
+
+@function em($pixels) {
+  $context: 16; // Browser-default
+  @return #{$pixels/$context}em;
+}
+
+.checkbox {
+  display: grid;
+  grid-template-columns: min-content auto;
+  align-items: center;
+  grid-gap: em(10);
+  color: $gray-700;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    .checkboxControl {
+      input[type='checkbox'] {
+        &:not(:checked) {
+          &:not(:disabled) {
+            border-color: $gray-600;
+          }
+        }
+      }
+    }
+  }
+}
+
+.checkboxControl {
+  display: inline-grid;
+  place-items: center;
+  place-content: center;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  cursor: inherit;
+
+  input[type='checkbox'] {
+    appearance: none;
+    grid-area: a;
+    height: 15px;
+    width: 15px;
+    outline: none;
+    margin: 0;
+    border: 1.5px solid $gray-300;
+    transition: background .3s, border-color .3s;
+    cursor: inherit;
+
+    &:checked {
+      background-color: $blue-600;
+      border-color: $blue-600;
+    }
+
+    &:disabled {
+      border-color: $gray-300;
+    }
+
+     &:focus {
+       &:not(:checked) {
+         &:not(:disabled) {
+           border-color: $gray-600;
+         }
+       }
+     }
+  }
+  
+  svg {
+    grid-area: a;
+    z-index: 2;
+    fill: white;
+  }
+}
+
+.label {
+  font-size: 14px;
+  line-height: 21px;
+  color: inherit;
+  cursor: inherit;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: $gray-300;
+}
